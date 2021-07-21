@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  {% if events %}
+    <div class="row">
+      {% for event in events %}
+        <div class="col-md-6">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ event.title }}</h5>
+                <small>{{ event.creation_datetime }}</small>
+              </div>
+              <p class="mb-1">{{ event.info|truncatechars:10 }}</p>
+              <small>{{ event.start_datetime }}</small>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <h1 class="col-md-12">Past events</h1>
+      {% for event in past_events %}
+        <div class="col-md-6">
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ event.title }}</h5>
+                <small>{{ event.creation_datetime }}</small>
+              </div>
+              <p class="mb-1">{{ event.info|truncatechars:10 }}</p>
+              <small>{{ event.start_datetime }}</small>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    no events yet
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'main.html' %}
+{% block content %}
+  <form method="POST" class="furniture-form" action="{% url 'create event' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn btn-secondary">Post</button>
+  </form>
+{% endblock content %}

@@ -1,8 +1,15 @@
 {% extends 'main.html' %}
 {% block content %}
-  <form method="POST" class="furniture-form" action="{% url 'create event' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button class="btn btn-secondary">Post</button>
-  </form>
+  <h1 class="text-center">Create an event</h1>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <form method="POST" class="furniture-form" action="{% url 'create event' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-secondary">Post</button>
+      </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
 {% endblock content %}

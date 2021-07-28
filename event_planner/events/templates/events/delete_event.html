@@ -1,8 +1,16 @@
 {% extends 'main.html' %}
 {% block content %}
-  <form method="POST" class="furniture-form" action="{% url 'delete event' event.pk %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button class="btn btn-secondary">Post</button>
-  </form>
+  <h1 class="text-center">Delete event event</h1>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <form method="POST" class="furniture-form" action="{% url 'delete event' event.pk %}"
+            enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-secondary">Post</button>
+      </form>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
 {% endblock content %}

@@ -18,7 +18,7 @@ class BootstrapFormMixin:
 class CreateEventForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ('creator', 'guests')
         # widgets = {
         #     'start_datetime': forms.DateTimeInput(attrs={'type': 'date'})
         # }
@@ -27,7 +27,7 @@ class CreateEventForm(BootstrapFormMixin, forms.ModelForm):
 class UpdateEventForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ('creator', 'guests')
 
 
 class DeleteEventForm(BootstrapFormMixin, forms.ModelForm):
@@ -39,4 +39,4 @@ class DeleteEventForm(BootstrapFormMixin, forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ('creator', 'guests')

@@ -13,6 +13,10 @@ class Event(models.Model):
     info = models.TextField()
     creation_datetime = models.DateTimeField(auto_now_add=True)
     start_datetime = models.DateTimeField()
+    guests = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='guest_at_events')
+
+    def number_of_guests(self):
+        return self.guests.count()
 
     def __str__(self):
         return f"{self.title} | {self.creator}"
@@ -20,3 +24,4 @@ class Event(models.Model):
     @staticmethod
     def get_absolute_url():
         return reverse('home')
+

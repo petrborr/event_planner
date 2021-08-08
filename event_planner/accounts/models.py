@@ -31,8 +31,11 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    profile_photo = models.ImageField(
+    photo = models.ImageField(
         upload_to='profiles',
         blank=True,
     )
+
+    def __str__(self):
+        return f"{self.user.email} Profile"
 

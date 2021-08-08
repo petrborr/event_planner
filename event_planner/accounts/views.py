@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
+from django.views.generic import UpdateView
 
 from event_planner.accounts.forms import SignInForm, SignUpForm
 from event_planner.accounts.models import CustomUser
@@ -15,8 +16,8 @@ class SignInView(LoginView):
     template_name = 'accounts/signin.html'
     redirect_authenticated_user = True
 
-    def get_success_url(self):
-        return reverse_lazy('home')
+    # def get_success_url(self):
+    #     return reverse_lazy('home')
 
 
 def sign_up(request):
@@ -36,3 +37,7 @@ def sign_up(request):
     }
 
     return render(request, 'accounts/signup.html', context)
+
+
+class UpdateProfile(UpdateView):
+    pass

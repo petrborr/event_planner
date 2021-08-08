@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
+from event_planner.accounts.models import UserProfile
+
 UserModel = get_user_model()
 
 
@@ -26,3 +28,11 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     readonly_fields = ('date_joined',)
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    pass
+
+
+

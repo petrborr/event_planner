@@ -5,8 +5,13 @@
   <div class="container">
     <div class="row">
       <p class="mt-4 text-center fs-1 fw-bold">{{ event.title }}</p>
+      <p class="mt-4 text-center fs-1 fw-bold">{{ event.info }}</p>
     </div>
     {% if user.is_authenticated %}
+      {% if event.creator_id == user.id %}
+        <a href="{% url 'update event' event.pk %}" class="btn btn-outline-success" role="button">Update event</a>
+        <a href="{% url 'delete event' event.pk %}" class="btn btn-outline-danger" role="button">Delete event</a>
+      {% endif %}
       <form action="{% url 'join event' event.id %}" method="POST">
         {% csrf_token %}
         {% if joined_event %}
@@ -16,31 +21,35 @@
         {% endif %}
       </form>
     {% else %}
-      <a class="btn btn-outline-info" href="{% url 'sign in' %}?next={{ request.path }}">Log in to join this event</a>
+      <a class="btn btn-outline-info" href="{% url 'sign in' %}?next={{ request.path }}">Sign in before you join event</a>
       <br>
     {% endif %}
     <strong class="text-secondary">{{ number_of_guests }} Guest{{ number_of_guests|pluralize }}</strong>
-    {% if guests %}
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for g in guests %}
-          <div class="col">
-            <div class="card h-100">
-              {% if g.userprofile.photo %}
-                <img src="{{ g.userprofile.photo.url }}" class="card-img-top" alt="profile photo">
-              {% else %}
-                <img src="{% static 'images/default_profile_pic.png' %}" class="card-img-top" alt="profile photo">
-              {% endif %}
-              <div class="card-body">
-                <h5 class="card-title">{{ g.email }}</h5>
-{#                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional#}
-{#                  content. This content is a little bit longer.</p>#}
+    {% if user.is_authenticated %}
+      {% if guests %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for g in guests %}
+            <div class="col">
+              <div class="card h-100">
+                {% if g.userprofile.photo %}
+                  <img src="{{ g.userprofile.photo.url }}" class="card-img-top" alt="profile photo">
+                {% else %}
+                  <img src="{% static 'images/default_profile_pic.png' %}" class="card-img-top" alt="profile photo">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ g.email }}</h5>
+                </div>
               </div>
             </div>
-          </div>
-        {% endfor %}
-      </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <h1>no guests</h1>
+      {% endif %}
     {% else %}
-      <h1>no guests</h1>
+      {% if guests %}
+        <p>Sign in to see users attending this event</p>
+      {% endif %}
     {% endif %}
   </div>
 {% endblock content %}

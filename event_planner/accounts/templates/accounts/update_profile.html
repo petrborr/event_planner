@@ -1,12 +1,13 @@
 {% extends 'main.html' %}
 {% block content %}
-  <h1 class="text-center">Delete event</h1>
+  <h1 class="text-center">Update {{ userprofile.user.email }}'s profile</h1>
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
-      <form method="POST" class="furniture-form" action="{% url 'delete event' event.pk %}"
+      <form method="POST" class="furniture-form" action="{% url 'update profile' userprofile.pk %}"
             enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form }}
         <button class="btn btn-secondary">Post</button>
         <input type="hidden" name="next" value="{{ next }}"/>
       </form>

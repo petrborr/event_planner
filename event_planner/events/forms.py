@@ -29,14 +29,14 @@ class UpdateEventForm(BootstrapFormMixin, forms.ModelForm):
         model = Event
         exclude = ('creator', 'guests')
 
-
-class DeleteEventForm(BootstrapFormMixin, forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['disabled'] = 'disabled'
-            visible.field.widget.attrs['required'] = 'required'
-
-    class Meta:
-        model = Event
-        exclude = ('creator', 'guests')
+#
+# class DeleteEventForm(BootstrapFormMixin, forms.ModelForm):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         for visible in self.visible_fields():
+#             visible.field.widget.attrs['disabled'] = 'disabled'
+#             visible.field.widget.attrs['required'] = 'required'
+#
+#     class Meta:
+#         model = Event
+#         exclude = ('creator', 'guests')

@@ -7,13 +7,13 @@
       {% for event in events %}
         <div class="col-md-6">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="{% url 'event details' event.pk %}" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ event.title }}</h5>
-                <small>{{ event.creation_datetime }}</small>
+                <small>Date: {{ event.start_datetime }}</small>
               </div>
               <p class="mb-1">{{ event.info|truncatechars:50 }}</p>
-              <small>{{ event.start_datetime }}</small>
+              <small>{{ event.creation_datetime }}</small>
             </a>
           </div>
         </div>
@@ -28,7 +28,7 @@
       {% for event in past_events %}
         <div class="col-md-6">
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a href="{% url 'event details' event.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ event.title }}</h5>
                 <small>{{ event.creation_datetime }}</small>
